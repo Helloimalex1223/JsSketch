@@ -1,0 +1,54 @@
+.container {
+    height: 400px;
+    width: 402px;
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+html, body {
+    margin: 0%;
+
+
+}
+
+.buttons, .title{
+    text-align: center;
+}
+.container {
+    padding: 20px;
+    background-color: rgba(43, 255, 0, 0.534);
+}
+html {
+    background-image: url("https://cdn.pixabay.com/photo/2017/09/23/11/08/three-2778485_960_720.png");
+}
+
+button {
+    height: 35px;
+   border-radius: 8px;
+   background-color: rgb(44, 143, 19);
+   color: white;
+}
+.buttons {
+    height: 40px;
+}
+#picker {
+    height: 35px;
+    border-radius: 8px;
+    background-color: rgb(44, 143, 19);
+    color: white;
+    
+}
+.titles {
+    width: 100%;
+    
+}
+
+.title {
+    text-align: center;
+    background-color: rgba(128, 255, 0, 0.61);
+}
+
+#colorPicker {
+    display: none;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head> <title>Alex's Etch-A-Sketch Project!</title> 
+    <link rel="stylesheet" href="style.css"></head>
+    
+    <header></header>
+    <body>
+        <!-- <div class="titles"> -->
+            <h1 class="title">ALEX'S ETCH A SKETCH</h1>
+        </div>
+        <div class="buttons">
+            <button id = "clear">Grid Size</button>
+            <button><label for = "colorPicker"> Choose your color<input id = "colorPicker" type = "color" value ="#FFFFFF"></label>
+            
+            <button id = "randColor">Random Color</button>
+            <button id = "clear2">Clear Grid</button>
+            
+        </div>
+        <div class="container">
+        
+        </div>
+    </body>
+</html>
+
+<script>
+
+//    sets initial square sides and color
+   let count = 16;
+   let color = "green";
+   
+   document.getElementById("randColor").onclick = function(){
+       color = currentColor()
+   }
+
+   function currentColor(){
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+   }
+   
+   
+    
+    // populates initial square grid
+    function populate(){
+    let containerStyle = document.querySelector(".container");
+    containerStyle.setAttribute("style", "display: flex; flex-wrap: wrap; flex-direction: row;")
+    let selector = document.querySelector(".container");
+    for (let i = 0; i < (count * count); i++){
+    let square = document.createElement("div");
+    let squareWidth = "calc(400px /" + count +")";
+    square.classList.add("Square2");
+    square.setAttribute("style", "background-color: white;  flex: 0 0 auto; min-width: 5px; outline: 1px dotted");
+    square.style.width = squareWidth;
+    square.style.height = squareWidth;
+    selector.appendChild(square);
+    square.addEventListener("mouseover", function(e){
+    e.target.style.backgroundColor = color;
+    })
+    }
+    }
+    populate()
+    
+    // clears grid of colors
+    function clear(){
+    for(let i = 0; i < (10000); i++){
+    let rem = document.querySelector(".Square2");
+    if(rem === null){
+        return;
+    }
+    else{
+        rem.parentNode.removeChild(rem);
+        }
+    }
+    }
+
+    // pressing clear button clears colors then populates a new grid 
+    document.getElementById("clear2").onclick = function(){
+        clear();
+        populate();
+    }
+
+    // asks how many squares in each row. creates grid based on that
+    document.getElementById("clear").onclick = function(){
+        count = prompt("how many squares in each row: ");
+        let selector = document.querySelector(".container");
+        clear();
+
+    for (let i = 0; i < (count * count); i++){
+        
+        let square = document.createElement("div");
+        let squareWidth = "calc(400px /" + count +")";
+        square.classList.add("Square2");
+        square.setAttribute("style", "background-color: white;  flex: 0 0 auto; outline: 1px dotted");
+        square.style.width = squareWidth;
+        square.style.height = squareWidth;
+        selector.appendChild(square);
+        square.addEventListener("mouseover", function(e){
+        e.target.style.backgroundColor = color;
+    })
+    }
+
+    
+        
+    };
+
+    window.addEventListener("load", startup, false);
+    function startup() {
+  colorWell = document.querySelector("#colorPicker");
+  colorWell.value = "#FFFFFF";
+  colorWell.addEventListener("input", updateFirst, false);
+  colorWell.addEventListener("change", updateAll, false);
+  colorWell.select();
+}
+
+function updateFirst(event) {
+  var sq = document.querySelector("div");
+
+  if (p) {
+    color = event.target.value;
+  }
+}
+
+// allows user to change colors using color picker
+function updateAll(event) {
+  document.querySelectorAll("div").forEach(function(p) {
+    color = event.target.value;
+  });
+}   
+</script>
